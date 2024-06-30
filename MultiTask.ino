@@ -17,12 +17,12 @@ void loop() {
   digitalWrite(GREEN, estadoL2);
   digitalWrite(RED, estadoL3);
 
-  if(tiempo1-t0==250){
+  if(tiempo1-t0==500){
     t0=tiempo1;
     estadoL1=!estadoL1;
   }
 
-  if(tiempo2-t1==750){
+  if(tiempo2-t1==1000){
     t1=tiempo2;
     estadoL2=!estadoL2;
   }
