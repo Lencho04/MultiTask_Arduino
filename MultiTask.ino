@@ -1,43 +1,34 @@
+/*Declaracion de variables*/
 #define BLUE 3
 #define GREEN 5
 #define RED 6
+/*Variables de tiempo*/
+unsigned long tiempo1, tiempo2, tiempo3; //Tiempos de secuencia
+unsigned long t0=0, t1=0, t3=0; //Variable de referencia
+int estadoL1=LOW, estadoL2=LOW, estadoL3=LOW; //Estado actual del led
 
 void setup() {
 }
 
 // the loop function runs over and over again forever
 void loop() {
-  loopBlueLed();
-  loopGreenLed();
-  loopRedLed();
-}
+  tiempo1 = tiempo2 = tiempo3 = millis();
+  digitalWrite(BLUE, estadoL1);
+  digitalWrite(GREEN, estadoL2);
+  digitalWrite(RED, estadoL3);
 
-void LedBlue() {
-  pinMode(BLUE, OUTPUT);
-}
-void loopBlueLed() {
-digitalWrite(BLUE, HIGH); // turn LED on (HIGH is the voltage level)
-delay(100); // wait for 100 ms
-digitalWrite(BLUE, LOW); // turn LED off making the voltage LOW
-delay(100); // wait for 100 ms
-}
+  if(tiempo1-t0==250){
+    t0=tiempo1;
+    estadoL1=!estadoL1;
+  }
 
-void LedGreen() {
-  pinMode(GREEN, OUTPUT);
-}
-void loopGreenLed() {
-digitalWrite(GREEN, HIGH); // turn LED on (HIGH is the voltage level)
-delay(100); // wait for half a second
-digitalWrite(GREEN, LOW); // turn LED off by making the voltage LOW
-delay(100);
-}
+  if(tiempo2-t1==750){
+    t1=tiempo2;
+    estadoL2=!estadoL2;
+  }
 
-void LedRed() {
-  pinMode(RED, OUTPUT);
-}
-void loopRedLed() {
-digitalWrite(RED, HIGH); // turn LED on (HIGH is the voltage level)
-delay(100); // wait for half a second
-digitalWrite(RED, LOW); // turn LED off by making the voltage LOW
-delay(100);
+  if(tiempo3-t3==100){
+    t3=tiempo3;
+    estadoL3=!estadoL3;
+  }
 }
